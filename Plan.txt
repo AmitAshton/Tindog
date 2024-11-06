@@ -1,0 +1,195 @@
+Name - TinDog
+
+Abillities:
+
+    1. Public page - for intrested people, call to action for signing up or login
+    2. Login page - form for entering the system as an existed user
+    3. Sign up page - form for entering the system as a new user
+    
+    5. Welcome page - exit button, notifications, add post quick access button, view your profile button
+       call to "explore page",
+       call to private chats,
+       call to new post on your profile
+    6. Explore page - tinder of dog options for specific user roles. 
+        intrested button for each dog option
+        not intrested button for each dog option
+
+    **settings?
+
+
+    7. Chats page - whatsup.
+    8. Profile page - your own profile page like facebook profile page.
+
+Chat option - optional
+Profile option - optional
+
+Hey
+Im creating a tindog app - tinder for dogs using MERN Stack:
+node.js + express.js
+mongoose
+react.js
+
+my app has users and each user has a status:
+1. selling a dog.
+2. giving a dog.
+3. buying a dog.
+4. adopting a dog.
+5. loking for a dogisitter(someone who will take care of your dog while you are not available)
+6. dogisitter(people who sign to the app in order to find job oppertunites for dogsitting)
+
+Some important points about the app:
+
+1. friends:
+people who buy a dog will have the oppertunity to scroll in the app between all the dog sellers and see the dog details, in order to find a match
+people who sell a dog will wait for people who buy a dog to be intrested in thier dog
+once there is a match, they will be friends
+
+Accordingly, people who adopt a dog will have the oppertunity to scroll in the app between all the dog givers and see the dog details, in order to find a match
+people who give a dog will wait for people who adopt a dog to be intrested in thier dog
+once there is a match, they will be friends
+
+Accordingly, people who are looking for a dogisitter will have the oppertunity to scroll in the app between all the dogisitters and see thier details, in order to find a match
+people who are dogisitters will wait for people who are looking for a dogisitter to be intrested in thier dog
+once there is a match, they will be friends
+
+
+im stuck with the database models and schema using mongoose
+
+i want my database to have all this:
+
+every user have:
+1. username - string, required
+
+2. password - string, required
+
+3. geographical location - location, required
+
+4. friends - array of other users which the current user matched with, at first empty array
+
+5. Status - string, required
+
+According to the status, i want to have another fields:
+
+If status is "selling a dog":
+5. price - int, required(selling price)
+6. dogName - string, required
+7. dogBreed - string, required
+8. dogAge - int, required
+9. images - images(i dont know how to add this to a mongoose schema), at least one required
+
+If status is "giving a dog":
+5. dogName - string, required
+6. dogBreed - string, required
+7. dogAge - int, required
+8. images - images(i dont know how to add this to a mongoose schema), at least one required
+
+If status is "buying a dog":
+5. price - int, required(buying price approximately, used for giving the client a proper results filtered by price)
+6. dogBreed - string, required(wanted breed for the dog)
+
+If status is "adopting a dog":
+5. dogBreed - string, required(wanted breed for the dog)
+
+If status is "loking for a dogisitter":
+5. dogName - string, required
+6. dogBreed - string, required
+7. images - images(i dont know how to add this to a mongoose schema), at least one required
+
+If status is "dogisitter":
+5. pricePerHour - int, required
+6. personImage - image(i dont know how to add this to a mongoose schema,
+        but every dogsitter must have one image of himself(the person) so people would be able to see who they choose to dogsitting thier dog)
+
+אני לא יכול למחוק משתמש שאין לו אובייקט לפי סטטוס
+כלומר בכל יצירת משתמש צריך ליצור גם את האובייקטים המתאימים לפי הססטוס
+כלומר כשהמשתמש יוצר חשבון, צריך ליצור לו גם אובייקטים מתאימים לפי הסטטוס
+כלומר בנוסף לטופס ההצטרפות, יש ליצור גם טופס לפי הסטטוס על מנת ליצור אובייקטים מתאימים
+
+clearbit API - for tinder logo
+statusDog API - for all the status codes html rendering images
+
+Pomeranian
+Poodle
+Boxer
+Shih Tzu
+English Bulldog
+
+
+
+
+For your Tindog app, which includes user matching, chat functionality, and role-based interactions, you'll need a stack that ensures scalability, real-time communication, and a smooth user experience. Below is a recommendation for a full stack solution:
+
+Front-End:
+React Native (Mobile App)
+Why: Cross-platform mobile development (iOS and Android) using JavaScript. It's perfect for delivering a smooth user interface and native-like performance.
+Features:
+Easy to integrate with third-party libraries.
+Large community and plugin ecosystem.
+Reusable components across platforms.
+Expo (Optional, if React Native)
+Why: Expo can simplify the development process, especially for building prototypes or MVPs. It includes built-in features such as push notifications, camera access, and easier deployment.
+Features:
+Simplifies app testing and deployment.
+Can be detached later for custom native code when needed.
+Back-End:
+Node.js with Express
+Why: Node.js is lightweight and handles asynchronous operations well, which is crucial for real-time communication and handling large-scale connections. Express makes routing and middleware easy.
+Features:
+JavaScript-based, making it easy to share code between the front and back end.
+Strong real-time support (needed for chat and matching features).
+Socket.IO
+Why: Real-time communication is essential for private chats and instant notifications when matches occur.
+Features:
+Allows bi-directional communication between clients and servers.
+Can handle rooms, broadcasting, and multiple chat participants.
+Database:
+MongoDB (NoSQL)
+Why: MongoDB can handle semi-structured data, making it perfect for flexible user profiles, dog details, and different user statuses.
+Features:
+Easy to scale.
+Built-in support for document-based models, which fits well for a dynamic schema (dog profiles, user preferences, etc.).
+Redis (Optional for caching and session management)
+Why: To improve the performance of frequently accessed data (like user profiles or chat messages) and for session management in Socket.IO.
+Authentication & Authorization:
+JWT (JSON Web Tokens)
+Why: For secure, stateless user authentication and authorization, especially if you're dealing with role-based access control.
+Features:
+Compatible with mobile apps and APIs.
+Easy to implement on both the client and server.
+Cloud & Hosting:
+AWS or Google Cloud (EC2 or Firebase for real-time features)
+Why: AWS EC2 offers flexibility, scalability, and reliable hosting services. Firebase is also a good option if you want ready-made solutions for real-time database and authentication.
+Features:
+AWS: Elastic, scalable backend for hosting your server and database.
+Firebase: Great for real-time data sync (chat, notifications), cloud storage, and authentication.
+S3 (for image storage)
+Why: You'll need to store user and dog images. AWS S3 is reliable, scalable, and secure for media storage.
+Features:
+Fast retrieval and storage of images.
+Low cost for media-heavy apps.
+Real-Time Chat & Notifications:
+Socket.IO (for real-time chat)
+Firebase Cloud Messaging (FCM) (for push notifications)
+Why: Push notifications are essential for informing users of new messages or match alerts.
+Features:
+Real-time notifications across devices.
+Other Tools:
+Stripe or PayPal SDK (Optional)
+Why: If you want to add payment options for dog-sitting services.
+Features:
+Easy to integrate with React Native and Node.js.
+SendGrid or Mailgun (Optional for email notifications)
+Why: For email notifications when a match occurs or for system messages.
+Features:
+Scalable and simple API for sending transactional emails.
+Summary Stack:
+Front-end: React Native + Expo (for mobile app)
+Back-end: Node.js with Express + Socket.IO (for real-time features)
+Database: MongoDB (for flexible data structure) + Redis (for caching & session)
+Cloud: AWS EC2 or Firebase (for hosting and real-time functionality)
+Storage: AWS S3 (for image uploads)
+Authentication: JWT (for user authentication)
+Chat: Socket.IO (for real-time chat)
+Notifications: Firebase Cloud Messaging (for push notifications)
+This stack provides flexibility, scalability, and real-time communication, which are key for your Tindog app. It will allow you to match users effectively and handle chat and notification features seamlessly.
+
